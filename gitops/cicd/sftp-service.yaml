@@ -1,56 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    field.cattle.io/publicEndpoints: >-
-      [{"port":32222,"protocol":"TCP","serviceName":"sftp:sftp-service","allNodes":true}]
-  creationTimestamp: '2026-03-14T12:26:40Z'
-  managedFields:
-    - apiVersion: v1
-      fieldsType: FieldsV1
-      fieldsV1:
-        f:metadata:
-          f:annotations:
-            .: {}
-            f:field.cattle.io/publicEndpoints: {}
-        f:spec:
-          f:externalTrafficPolicy: {}
-          f:internalTrafficPolicy: {}
-          f:ports:
-            .: {}
-            k:{"port":22,"protocol":"TCP"}:
-              .: {}
-              f:nodePort: {}
-              f:port: {}
-              f:protocol: {}
-              f:targetPort: {}
-          f:selector: {}
-          f:sessionAffinity: {}
-          f:type: {}
-      manager: rancher
-      operation: Update
-      time: '2026-03-14T12:26:40Z'
   name: sftp-service
   namespace: sftp
-  resourceVersion: '4358'
-  uid: 7d1dca7b-2f23-41e7-a735-4e0e1b422f22
 spec:
-  clusterIP: 10.43.205.111
-  clusterIPs:
-    - 10.43.205.111
-  externalTrafficPolicy: Cluster
-  internalTrafficPolicy: Cluster
-  ipFamilies:
-    - IPv4
-  ipFamilyPolicy: SingleStack
+  type: NodePort
   ports:
-    - nodePort: 32222
-      port: 22
-      protocol: TCP
+    - port: 22
       targetPort: 22
+      protocol: TCP
+      name: 22tcp
+      nodePort: 32222
   selector:
     app: sftp
-  sessionAffinity: None
-  type: NodePort
-status:
-  loadBalancer: {}
