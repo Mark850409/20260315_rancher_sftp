@@ -43,4 +43,4 @@ spec:
         - name: ssh-key
           secret:
             secretName: sftp-key
-            defaultMode: 0420
+            defaultMode: 0600
